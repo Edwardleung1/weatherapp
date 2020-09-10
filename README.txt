@@ -1,0 +1,1 @@
+Building a weather app with Vanilla JavaScript using no frameworks or libraries.
