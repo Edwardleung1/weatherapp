@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body */
+body {
+  height: 100vh; /* full screen */
+  display: flex;
+  justify-content: center;
+  flex-direction: column; /* stack items */
+  align-items: center;
+  background: linear-gradient(#ffafbd, #ffc3a0);
+  font-family: sans-serif;
+  color: blue;
+}
+
+/* location */
+.location,
+.temperature {
+  height: 30vh; /* 30% of the viewport height */
+  width: 50%;
+  display: flex; /* space location with icon */
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* temperature */
+.temperature {
+  flex-direction: column; /* stack items */
+}
+
+/* degree-section (c) */
+.degree-section {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* style temp C */
+.degree-section span {
+  margin: 10px;
+  font-size: 30px;
+}
+
+/* degree-section h2 */
+.degree-section h2 {
+  font-size: 40px;
+}
