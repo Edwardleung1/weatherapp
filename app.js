@@ -4,6 +4,9 @@ window.addEventListener("load", () => {
   let long;
   let lat;
   let key;
+  let temperatureDescription = document.querySelector(".temperature-description");
+  let temperatureDegree = document.querySelector(".temperature-degree");
+  let locationTimezone = document.querySelector(".location-timezone");
 
   // if exists, find the location of the user
   if (navigator.geolocation) {
@@ -17,7 +20,7 @@ window.addEventListener("load", () => {
       // allow you to make request from local host, acting like a proxy
       const proxy = "https://cors-anywhere.herokuapp.com/";
       // api call
-      const api = `${proxy}api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
+      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
 
       // use fetch, a getRequest on api call, then run the response
       fetch(api)
@@ -27,6 +30,14 @@ window.addEventListener("load", () => {
         })
         .then((data) => {
           console.log(data);
+          // pull out data
+          const { temp } = data.main;
+          const { description } = data.weather[0];
+          const { name } = data;
+          // Set DOM elements from the API
+          temperatureDegree.textContent = Math.ceil(temp - 273.15);
+          temperatureDescription.textContent = description;
+          locationTimezone.textContent = name;
         });
     });
   }
