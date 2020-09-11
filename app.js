@@ -17,10 +17,8 @@ window.addEventListener("load", () => {
       lat = position.coords.latitude;
       key = "030be1451c803b10097d32ebdadbec04";
 
-      // allow you to make request from local host, acting like a proxy
-      const proxy = "https://cors-anywhere.herokuapp.com/";
       // api call
-      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
+      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${key}`;
 
       // use fetch, a getRequest on api call, then run the response
       fetch(api)
@@ -29,15 +27,18 @@ window.addEventListener("load", () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           // pull out data
           const { temp } = data.main;
           const { description } = data.weather[0];
           const { name } = data;
+          const { icon } = data.weather[0];
           // Set DOM elements from the API
-          temperatureDegree.textContent = Math.ceil(temp - 273.15);
+          temperatureDegree.textContent = Math.floor(temp);
           temperatureDescription.textContent = description;
           locationTimezone.textContent = name;
+
+          //set icon
+          document.getElementById("icon-id").src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         });
     });
   }
