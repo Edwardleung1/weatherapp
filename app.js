@@ -41,5 +41,7 @@ window.addEventListener("load", () => {
           document.getElementById("icon-id").src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         });
     });
+  } else {
+    h1.textContent = "This browser does not support geolocation.";
   }
 });
